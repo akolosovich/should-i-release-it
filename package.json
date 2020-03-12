@@ -1,0 +1,36 @@
+{
+   "name": "should-i-release-it",
+   "version": "0.1.0",
+   "private": true,
+   "main": "src/index.js",
+   "scripts": {
+      "compile": "node src/index.js compile",
+      "collect": "node src/index.js collect",
+      "lint": "eslint src --ext .js,.json"
+   },
+   "devDependencies": {
+      "babel-eslint": "10.0.1",
+      "eslint": "5.16.0",
+      "eslint-config-airbnb-base": "13.1.0",
+      "eslint-config-prettier": "4.1.0",
+      "eslint-loader": "2.1.2",
+      "eslint-plugin-import": "2.16.0",
+      "eslint-plugin-json": "1.4.0",
+      "eslint-plugin-prettier": "3.0.1",
+      "prettier": "1.16.4",
+      "pretty-error": "2.1.1"
+   },
+   "engines": {
+      "node": "10.15.3"
+   },
+   "dependencies": {
+      "axios": "0.19.2",
+      "commander": "4.1.1",
+      "lodash": "4.17.15",
+      "pug": "2.0.3",
+      "reselect": "4.0.0"
+   },
+   "bin": {
+      "show-prs": "src/cli.js"
+   }
+}

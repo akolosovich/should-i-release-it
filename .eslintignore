@@ -1,0 +1,8 @@
+node_modules/
+*.iml
+npm-debug.log
+.nyc_output
+.tmp
+.idea
+output/*
+output.json

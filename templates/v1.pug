@@ -1,0 +1,63 @@
+mixin renderPullRequests(title, data)
+  if data && data.length
+    a(href='https://github.com/wkda/' + title + '/releases' target='_blank')
+        h4=title
+    table.table.table-striped.table-bordered
+      tr
+        td(style='width: 100px') PR
+        td(style='width: 120px') Type
+        td(style='width: 120px') Issue
+        td Commit
+        td(style='width: 100px') Status
+        td(style='width: 40px; text-align: center;') Author
+      each pr in data
+        tr
+          td
+            a(href=pr.url target='_blank') #{pr.id}
+          td=pr.issue.issueType
+          td
+            a(href=issue.jiraDomain + '/browse/' + pr.issue.key target='_blank') #{pr.issue.key}
+          td=pr.name
+          td
+            case pr.status
+              when 'MERGED'
+                span.badge.badge-success #{pr.status}
+              when 'DECLINED'
+                span.badge.badge-danger #{pr.status}
+              default
+                span.badge.badge-black #{pr.status}
+          td(style='text-align: center;')
+            if pr.author
+              a(href='https://github.com/' + pr.author.name target='_blank')
+                  img(
+                    src=pr.author.avatarUrl
+                    alt=pr.author.name
+                    style='width: 20px;'
+                  )
+
+doctype html
+html(lang="en")
+  head
+    title= issue.summary
+    link(
+      rel='stylesheet'
+      href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+      integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
+      crossorigin='anonymous'
+    )
+  body.container
+    div.row
+      div.col-md
+        a(
+          href=issue.jiraDomain + '/browse/' + issue.key
+          style='font-size: 1.5em;'
+          target='_blank'
+        ) #{issue.summary}
+        div.alert.alert-success(role='alert')
+            div #{issue.issuesTotal} issues total
+            div #{issue.repositoriesTotal} repositories to release
+            div #{issue.pullRequestsTotal} pull requests were created
+        br
+
+        each repo in Object.keys(issue.repositories)
+          +renderPullRequests(repo, issue.repositories[repo])
