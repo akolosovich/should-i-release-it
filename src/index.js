@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+require('dotenv').config();
 const { run } = require('./cli');
 const { compileService, aggregationService, fileService } = require('./services');
 
