@@ -24,7 +24,7 @@
       "node": "12.16.1"
    },
    "dependencies": {
-      "axios": "^0.19.2",
+      "axios": "^0.21.1",
       "commander": "4.1.1",
       "dotenv": "^8.2.0",
       "lodash": "^4.17.19",
